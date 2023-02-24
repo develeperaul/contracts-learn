@@ -1,4 +1,9 @@
 {
+  "scripts": {
+    "test": "npx hardhat coverage",
+    "re": "npx hardhat clean && npx hardhat compile && npm run bench",
+    "bench": "npx hardhat run scripts/bench.js --network localhost"
+  },
   "devDependencies": {
     "@ethersproject/abi": "^5.4.7",
     "@ethersproject/providers": "^5.4.7",

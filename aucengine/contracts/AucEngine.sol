@@ -1,5 +1,5 @@
-// SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.9;
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.17;
 
 // Uncomment this line to use console.log
 // import "hardhat/console.sol";
@@ -53,9 +53,12 @@ contract AucEngine {
         uint discount = cAuction.discountRate * elapsed;
         return cAuction.startPrice - discount;
     }
-
+    // function stop(uint index){
+    //     Auction storage cAuction = auctions[index];
+    //     cAuction.stopped = true;
+    // }
     function buy(uint index) external payable {
-        Auction memory cAuction = auctions[index];
+        Auction storage cAuction = auctions[index];
         require(!cAuction.stopped, "stopped");
         require(block.timestamp < cAuction.endsAt, "ended");
         uint cPrice = getPriceFor(index);
